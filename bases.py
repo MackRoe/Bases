@@ -25,7 +25,9 @@ def make_digit_list(digits):
     for digit in digit_list:
         if digit.isalpha():
             # assign value from corresponding dict key
+            digit = digit.upper()
             digit = digit_dict[digit]
+        print(digit)
 
     return digit_list
 
@@ -43,9 +45,9 @@ def decode(digits, base):
     # split digits into a list of digits
     number_of_digits = len(digit_list)
     # get length of list of digits
-    range_limit = int(number_of_digits) - 1
+    range_limit = int(number_of_digits)
     # set range limit
-    for i in range[0:range_limit]:
+    for i in range(range_limit):
         # steps through range of exponents which are the same as the list index
         converted_decimal = 0
         converted_decimal += (int(digit_list[i]) * (base ** i))
