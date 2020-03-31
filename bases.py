@@ -10,11 +10,18 @@ import string
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
 
+def split(digits):
+    return [char for char in digits]
+
+
 def make_digit_list(digits):
     '''convert digits of non-decimal numeric base systems to a list of
     decimals'''
-    # get digits string
-    digit_list = digits.split()
+    # get digits string and split each charater
+    digit_list = split(digits)
+    # reverse the order of the list so last digit is first
+    digit_list.reverse()
+
     digit_dict = {
         'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16, 'H': 17,
         'I': 18, 'J': 19, 'K': 20, 'L': 21, 'M': 22, 'N': 23, 'O': 24, 'P': 25,
@@ -24,10 +31,10 @@ def make_digit_list(digits):
 
     for digit in digit_list:
         if digit.isalpha():
-            # assign value from corresponding dict key
+            # convert alpha list item to upper case
             digit = digit.upper()
+            # assign value from corresponding dict key
             digit = digit_dict[digit]
-        print(digit)
 
     return digit_list
 
@@ -47,12 +54,14 @@ def decode(digits, base):
     # get length of list of digits
     range_limit = int(number_of_digits)
     # set range limit
-    for i in range(range_limit):
+    converted_decimal = int(digit_list[0])
+    # begin summing with last digit of digits (recall list was reversed by
+    #   make_digit_list helper function)
+    for i in range(1, range_limit):
         # steps through range of exponents which are the same as the list index
-        converted_decimal = 0
+
         converted_decimal += (int(digit_list[i]) * (base ** i))
         return converted_decimal
-
 
 
 def encode(number, base):
