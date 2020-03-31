@@ -10,6 +10,26 @@ import string
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
 
+def make_digit_list(digits):
+    '''convert digits of non-decimal numeric base systems to a list of
+    decimals'''
+    # get digits string
+    digit_list = digits.split()
+    digit_dict = {
+        'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16, 'H': 17,
+        'I': 18, 'J': 19, 'K': 20, 'L': 21, 'M': 22, 'N': 23, 'O': 24, 'P': 25,
+        'Q': 26, 'R': 27, 'S': 28, 'T': 29, 'U': 30, 'V': 31, 'W': 32, 'X': 33,
+        'Y': 34, 'Z': 35
+    }
+
+    for digit in digit_list:
+        if digit.isalpha():
+            # assign value from corresponding dict key
+            digit = digit_dict[digit]
+
+    return digit_list
+
+
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
     digits: str -- string representation of number (in given base)
@@ -18,23 +38,19 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
 
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    if base == 2:
-        base_is_binary = True
-    while base_is_binary:
-        # get binary string
-        binary_digit_list = digits.split()
-        number_of_digits = len(binary_digit_list)
+    digit_list = make_digit_list(digits)
 
+    # split digits into a list of digits
+    number_of_digits = len(digit_list)
+    # get length of list of digits
+    range_limit = int(number_of_digits) - 1
+    # set range limit
+    for i in range[0:range_limit]:
+        # steps through range of exponents which are the same as the list index
+        converted_decimal = 0
+        converted_decimal += (int(digit_list[i]) * (base ** i))
+        return converted_decimal
 
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    if base == 16:
-        base_is_hexadecimal = True
-
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
 
 
 def encode(number, base):
