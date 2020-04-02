@@ -17,6 +17,24 @@ def split(digits):
         return digits
 
 
+def convert_to_alpha(digit):
+    digit_dict = {
+        'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15, 'G': 16, 'H': 17,
+        'I': 18, 'J': 19, 'K': 20, 'L': 21, 'M': 22, 'N': 23, 'O': 24, 'P': 25,
+        'Q': 26, 'R': 27, 'S': 28, 'T': 29, 'U': 30, 'V': 31, 'W': 32, 'X': 33,
+        'Y': 34, 'Z': 35
+    }
+
+    if digit.isalpha():
+        digit = digit.upper()
+        digit = digit_dict[digit]
+        return digit
+    elif digit.isnum():
+        return digit
+    else:
+        print("ERROR: Invalid Character")
+
+
 def make_digit_list(digits):
     '''convert digits of non-decimal numeric base systems to a list of
     decimals'''
@@ -66,10 +84,10 @@ def decode(digits, base):
     # get length of list of digits
     range_limit = int(number_of_digits)
     # set range limit
-    converted_decimal = int(digit_list[0])
+    converted_decimal = 0
     # begin summing with last digit of digits (recall list was reversed by
     #   make_digit_list helper function)
-    for i in range(1, range_limit):
+    for i in range(0, range_limit):
         # steps through range of exponents which are the same as the list index
 
         converted_decimal += (int(digit_list[i]) * (base ** i))
@@ -91,6 +109,16 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+    encoded_digits_list = []
+    while number > 0:
+        new_digit = number % base
+        number = number - (number // base)
+        encoded_digits_list.prepend(new_digit)
+    for digit in encoded_digits_list:
+        if digit > 9:
+            digit.convert_to_alpha()
+        encoded_number += str(digit)
+    return encoded_number
 
 
 def convert(digits, base1, base2):
