@@ -11,7 +11,10 @@ import string
 
 
 def split(digits):
-    return [char for char in digits]
+    if len(digits) > 0:
+        return [char for char in digits]
+    else:
+        return digits
 
 
 def make_digit_list(digits):
@@ -29,12 +32,21 @@ def make_digit_list(digits):
         'Y': 34, 'Z': 35
     }
 
+    print('')
+    print('digits in digit_list:')
     for digit in digit_list:
+        digit = digit.rstrip()
         if digit.isalpha():
+            print('alpha digit identified')
             # convert alpha list item to upper case
             digit = digit.upper()
-            # assign value from corresponding dict key
-            digit = digit_dict[digit]
+            if digit in digit_dict:
+                # assign value from corresponding dict key
+                digit = digit_dict[digit]
+                print('alpha digit converted to decimal numeric')
+            else:
+                print('invalid char: ' + str(digit))
+        print(digit)
 
     return digit_list
 
