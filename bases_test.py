@@ -7,6 +7,8 @@ import unittest
 class BasesDecodeTest(unittest.TestCase):
 
     def test_decode_binary(self):
+        print('')
+        print('BEGIN test_decode_binary')
         assert decode('0', 2) == 0
         assert decode('1', 2) == 1
         assert decode('10', 2) == 2
@@ -25,6 +27,8 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('1111', 2) == 15
 
     def test_decode_decimal(self):
+        print('')
+        print('BEGIN test_decode_decimal')
         assert decode('5', 10) == 5
         assert decode('9', 10) == 9
         assert decode('10', 10) == 10
@@ -39,6 +43,8 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('24680', 10) == 24680
 
     def test_decode_hexadecimal(self):
+        print('')
+        print('BEGIN test_decode_hexadecimal')
         assert decode('a', 16) == 10
         assert decode('f', 16) == 15
         assert decode('99', 16) == 153
@@ -53,6 +59,8 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('f007ba11', 16) == 4027038225
 
     def test_decode_10(self):
+        print('')
+        print('BEGIN test_decode_10')
         assert decode('10', 2) == 2
         assert decode('10', 4) == 4
         assert decode('10', 8) == 8
@@ -63,6 +71,8 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('10', 36) == 36
 
     def test_decode_1010(self):
+        print('')
+        print('BEGIN test_decode_1010')
         assert decode('1010', 2) == 10
         assert decode('1010', 4) == 68
         assert decode('1010', 8) == 520
@@ -73,6 +83,8 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('1010', 36) == 46692
 
     def test_decode_101101(self):
+        print('')
+        print('BEGIN test_decode_101101')
         assert decode('101101', 2) == 45
         assert decode('101101', 4) == 1105
         assert decode('101101', 8) == 33345
