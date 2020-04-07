@@ -112,22 +112,36 @@ def encode(number, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
-    assert number >= 0, 'number is negative: {}'.format(number)
+    assert int(number) >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
     # ...
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+    original_number = number
     encoded_digits_list = []
-    while number > 0:
-        new_digit = number % base
-        number = number - (number // base)
-        encoded_digits_list.prepend(new_digit)
+    encoded_number = ''
+    while int(number) > 0:
+        if int(number) < base:
+            new_digit = int(number)
+            encoded_digits_list.insert(0, new_digit)
+            number -= int(new_digit)
+        else:
+            new_digit = int(number) % base  # this is the remainder
+            encoded_digits_list.insert(0, new_digit)
+            print('encoded digits:', encoded_digits_list)
+            number = (int(number) // base)
+            print(number, 'remaining to be encoded')
+
     for digit in encoded_digits_list:
         if digit > 9:
             digit.convert_to_alpha()
-        encoded_number += str(digit)
+            print('converted digit is: ', digit)
+
+        encoded_number = encoded_number + str(digit)
+        print(str(encoded_number), 'is the encoded number')
+    print(str(original_number), "encoded to base", base, "is", encoded_number)
     return encoded_number
 
 
@@ -164,7 +178,8 @@ def main():
     # else:
     #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
     #     print('Converts digits from base1 to base2')
-    print(decode('a', 16))
+    # print(decode('a', 16))
+    print(encode('12', 2))
 
 if __name__ == '__main__':
     main()
