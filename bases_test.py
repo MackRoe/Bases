@@ -6,41 +6,41 @@ import unittest
 
 class BasesDecodeTest(unittest.TestCase):
 
-    def test_decode_binary(self):
-        print('')
-        print('BEGIN test_decode_binary')
-        assert decode('0', 2) == 0
-        assert decode('1', 2) == 1
-        assert decode('10', 2) == 2
-        assert decode('11', 2) == 3
-        assert decode('100', 2) == 4
-        assert decode('101', 2) == 5
-        assert decode('110', 2) == 6
-        assert decode('111', 2) == 7
-        assert decode('1000', 2) == 8
-        assert decode('1001', 2) == 9
-        assert decode('1010', 2) == 10
-        assert decode('1011', 2) == 11
-        assert decode('1100', 2) == 12
-        assert decode('1101', 2) == 13
-        assert decode('1110', 2) == 14
-        assert decode('1111', 2) == 15
-
-    def test_decode_decimal(self):
-        print('')
-        print('BEGIN test_decode_decimal')
-        assert decode('5', 10) == 5
-        assert decode('9', 10) == 9
-        assert decode('10', 10) == 10
-        assert decode('25', 10) == 25
-        assert decode('64', 10) == 64
-        assert decode('99', 10) == 99
-        assert decode('123', 10) == 123
-        assert decode('789', 10) == 789
-        assert decode('2345', 10) == 2345
-        assert decode('6789', 10) == 6789
-        assert decode('13579', 10) == 13579
-        assert decode('24680', 10) == 24680
+    # def test_decode_binary(self):
+    #     print('')
+    #     print('BEGIN test_decode_binary')
+    #     assert decode('0', 2) == 0
+    #     assert decode('1', 2) == 1
+    #     assert decode('10', 2) == 2
+    #     assert decode('11', 2) == 3
+    #     assert decode('100', 2) == 4
+    #     assert decode('101', 2) == 5
+    #     assert decode('110', 2) == 6
+    #     assert decode('111', 2) == 7
+    #     assert decode('1000', 2) == 8
+    #     assert decode('1001', 2) == 9
+    #     assert decode('1010', 2) == 10
+    #     assert decode('1011', 2) == 11
+    #     assert decode('1100', 2) == 12
+    #     assert decode('1101', 2) == 13
+    #     assert decode('1110', 2) == 14
+    #     assert decode('1111', 2) == 15
+    #
+    # def test_decode_decimal(self):
+    #     print('')
+    #     print('BEGIN test_decode_decimal')
+    #     assert decode('5', 10) == 5
+    #     assert decode('9', 10) == 9
+    #     assert decode('10', 10) == 10
+    #     assert decode('25', 10) == 25
+    #     assert decode('64', 10) == 64
+    #     assert decode('99', 10) == 99
+    #     assert decode('123', 10) == 123
+    #     assert decode('789', 10) == 789
+    #     assert decode('2345', 10) == 2345
+    #     assert decode('6789', 10) == 6789
+    #     assert decode('13579', 10) == 13579
+    #     assert decode('24680', 10) == 24680
 
     def test_decode_hexadecimal(self):
         print('')

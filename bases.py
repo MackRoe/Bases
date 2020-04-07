@@ -52,20 +52,24 @@ def make_digit_list(digits):
 
     print('')
     print('digits in digit_list:')
+    index_tracker = 0
     for digit in digit_list:
+
         digit = digit.rstrip()
         print('checking for alpha digits')
         if digit.isalpha():
             print('alpha digit identified')
             # convert alpha list item to upper case
             digit = digit.upper()
+            print(digit)
             if digit in digit_dict:
                 # assign value from corresponding dict key
-                digit = digit_dict[digit]
-                print('alpha digit converted to decimal numeric')
+                digit = digit_dict.get(digit)
+                print('alpha digit converted to decimal numeric: ', digit)
+                digit_list[index_tracker] = digit
             else:
                 print('invalid char: ' + str(digit))
-        print(digit)
+        index_tracker += 1
 
     return digit_list
 
@@ -92,7 +96,7 @@ def decode(digits, base):
     #   make_digit_list helper function)
     for i in range(0, range_limit):
         # steps through range of exponents which are the same as the list index
-        if digit_list[i].isalpha():
+        if str(digit_list[i]).isalpha():
             print("The digit " + str(digit_list[i]) + " is a letter.")
         else:
             print('the converted decimal is ', (int(digit_list[i]) * (base ** i)))
@@ -160,7 +164,7 @@ def main():
     # else:
     #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
     #     print('Converts digits from base1 to base2')
-    print(decode('10', 2))
+    print(decode('a', 16))
 
 if __name__ == '__main__':
     main()
