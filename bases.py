@@ -54,6 +54,7 @@ def make_digit_list(digits):
     print('digits in digit_list:')
     for digit in digit_list:
         digit = digit.rstrip()
+        print('checking for alpha digits')
         if digit.isalpha():
             print('alpha digit identified')
             # convert alpha list item to upper case
@@ -83,15 +84,20 @@ def decode(digits, base):
     number_of_digits = len(digit_list)
     # get length of list of digits
     range_limit = int(number_of_digits)
+    print("range_limit= ", range_limit)
+    print("digit_list=", digit_list)
     # set range limit
     converted_decimal = 0
     # begin summing with last digit of digits (recall list was reversed by
     #   make_digit_list helper function)
     for i in range(0, range_limit):
         # steps through range of exponents which are the same as the list index
-
-        converted_decimal += (int(digit_list[i]) * (base ** i))
-        return converted_decimal
+        if digit_list[i].isalpha():
+            print("The digit " + str(digit_list[i]) + " is a letter.")
+        else:
+            print('the converted decimal is ', (int(digit_list[i]) * (base ** i)))
+            converted_decimal += (int(digit_list[i]) * (base ** i))
+    return converted_decimal
 
 
 def encode(number, base):
@@ -142,19 +148,19 @@ def convert(digits, base1, base2):
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
-    import sys
-    args = sys.argv[1:]  # Ignore script file name
-    if len(args) == 3:
-        digits = args[0]
-        base1 = int(args[1])
-        base2 = int(args[2])
-        # Convert given digits between bases
-        result = convert(digits, base1, base2)
-        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
-    else:
-        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
-        print('Converts digits from base1 to base2')
-
+    # import sys
+    # args = sys.argv[1:]  # Ignore script file name
+    # if len(args) == 3:
+    #     digits = args[0]
+    #     base1 = int(args[1])
+    #     base2 = int(args[2])
+    #     # Convert given digits between bases
+    #     result = convert(digits, base1, base2)
+    #     print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+    # else:
+    #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+    #     print('Converts digits from base1 to base2')
+    print(decode('10', 2))
 
 if __name__ == '__main__':
     main()
