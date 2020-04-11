@@ -126,6 +126,7 @@ def encode(number, base):
         if int(number) < base:
             new_digit = int(number)
             encoded_digits_list.insert(0, new_digit)
+            number = int(number)
             number -= int(new_digit)
         else:
             new_digit = int(number) % base  # this is the remainder
@@ -164,6 +165,13 @@ def convert(digits, base1, base2):
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
+    # decode to decimal then encode to given base
+    if base1 != 10:
+        number = decode(digits, base1)
+    else:
+        number = digits
+    converted_number = encode(number, base2)
+    return converted_number
 
 
 def main():
