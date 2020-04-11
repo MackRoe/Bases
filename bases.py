@@ -38,7 +38,7 @@ def convert_to_alpha(digit):
 def make_digit_list(digits):
     '''convert digits of non-decimal numeric base systems to a list of
     decimals'''
-    # get digits string and split each charater
+    # get digits string and split each character
     digit_list = split(digits)
     # reverse the order of the list so last digit is first
     digit_list.reverse()
@@ -136,7 +136,9 @@ def encode(number, base):
 
     for digit in encoded_digits_list:
         if digit > 9:
-            digit.convert_to_alpha()
+            # str(digit).convert_to_alpha()  # makes error
+            digitstr = string.digits + string.ascii_lowercase
+            digit = digitstr[digit]
             print('converted digit is: ', digit)
 
         encoded_number = encoded_number + str(digit)
